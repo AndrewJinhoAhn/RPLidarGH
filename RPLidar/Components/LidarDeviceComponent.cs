@@ -333,7 +333,7 @@ namespace RPLidar.Components
 
         public override GH_Exposure Exposure => GH_Exposure.primary;
         private static System.Drawing.Bitmap _icon;
-        protected override System.Drawing.Bitmap Icon => _icon ?? (_icon = IconLoader.Load("LidarDevice48.png"));
+        protected override System.Drawing.Bitmap Icon => _icon ?? (_icon = IconLoader.Load("RPLidar.png"));
 
         // Unique GUID — keep stable so old .ghx files keep resolving this component.
         public override Guid ComponentGuid => new Guid("3f1c8a42-6d7e-4b9a-9c21-5e8f0a1b2c3d");

@@ -86,7 +86,7 @@ namespace RPLidar.Components
 
         public override GH_Exposure Exposure => GH_Exposure.primary;
         private static System.Drawing.Bitmap _icon;
-        protected override System.Drawing.Bitmap Icon => _icon ?? (_icon = IconLoader.Load("DottedCircle48.png"));
+        protected override System.Drawing.Bitmap Icon => _icon ?? (_icon = IconLoader.Load("Scan.png"));
 
         public override Guid ComponentGuid => new Guid("7a2b9e15-4c83-4f6d-b1a0-2d9c6e3f4a5b");
     }

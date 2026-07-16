@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<!-- Select the framework(s) you wish to target.
@@ -7,7 +7,7 @@
         Rhino 8 Windows: net48, net7.0, net7.0-windows, net7.0-windows10.0.22000.0, etc
         Rhino 8 Mac: net7.0, net7.0-macos, net7.0-macos12.0, etc
     -->
-		<TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
+		<TargetFrameworks>net7.0-windows;net7.0</TargetFrameworks>
 		<EnableDynamicLoading>true</EnableDynamicLoading>
 		<TargetExt>.gha</TargetExt>
 		<NoWarn>NU1701;NETSDK1086;CA1416</NoWarn>
@@ -16,22 +16,25 @@
 
 	<PropertyGroup>
 		<!-- Specifies information for Assembly and Yak -->
-		<Version>1.0</Version>
+		<Version>1.1.1</Version>
+		<AssemblyVersion>1.1.1.0</AssemblyVersion>
+		<FileVersion>1.1.1.0</FileVersion>
 		<Title>RPLidar</Title>
-		<Company>RPLidar Authors</Company>
-		<Description>Description of RPLidar</Description>
+		<Authors>Andrew Jinho Ahn</Authors>
+		<Company>Hanyang University CMCIC</Company>
+		<Description>Slamtec RPLIDAR integration for Grasshopper. Connect an RPLIDAR over serial, stream 2D scan points, auto-detect the device across serial ports, and extract room wall outlines from a single sweep. Windows only.</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\DottedCircle48.png" />
-	  <None Remove="Resources\FullCircle48.png" />
-	  <None Remove="Resources\LidarDevice48.png" />
+	  <None Remove="Resources\Outliner.png" />
+	  <None Remove="Resources\RPLidar.png" />
+	  <None Remove="Resources\Scan.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Resources\DottedCircle48.png" />
-	  <EmbeddedResource Include="Resources\FullCircle48.png" />
-	  <EmbeddedResource Include="Resources\LidarDevice48.png" />
+	  <EmbeddedResource Include="Resources\Outliner.png" />
+	  <EmbeddedResource Include="Resources\RPLidar.png" />
+	  <EmbeddedResource Include="Resources\Scan.png" />
 	</ItemGroup>
 
 	<ItemGroup>
