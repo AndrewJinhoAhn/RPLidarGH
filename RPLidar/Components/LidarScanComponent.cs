@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
@@ -17,7 +17,7 @@ namespace RPLidar.Components
         public LidarScanComponent()
           : base("RPLIDAR Scan", "Scan",
                  "Reads the latest 360-degree scan from an RPLIDAR device as points.",
-                 "Appendage", "RPLiDAR")
+                 "Appendage", "RPLIDAR")
         {
         }
 
@@ -29,17 +29,17 @@ namespace RPLidar.Components
                 GH_ParamAccess.item);
 
             pManager.AddNumberParameter(
-                "Scale", "S",
+                "Scale", "Scale",
                 "Scale factor from millimeters to model units (e.g. 0.001 for meters).",
                 GH_ParamAccess.item, 1.0);
         }
 
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddPointParameter("Points", "P", "Scan points on the world XY plane.", GH_ParamAccess.list);
-            pManager.AddNumberParameter("Distances", "D", "Distances (scaled).", GH_ParamAccess.list);
-            pManager.AddNumberParameter("Angles", "A", "Angles in degrees.", GH_ParamAccess.list);
-            pManager.AddIntegerParameter("Count", "N", "Number of valid points.", GH_ParamAccess.item);
+            pManager.AddPointParameter("Points", "Points", "Scan points on the world XY plane.", GH_ParamAccess.list);
+            pManager.AddNumberParameter("Distances", "Dist", "Distances (scaled).", GH_ParamAccess.list);
+            pManager.AddNumberParameter("Angles", "Angles", "Angles in degrees.", GH_ParamAccess.list);
+            pManager.AddIntegerParameter("Count", "Count", "Number of valid points.", GH_ParamAccess.item);
             pManager.AddNumberParameter("ScanHz", "Hz", "Measured rotation frequency.", GH_ParamAccess.item);
         }
 

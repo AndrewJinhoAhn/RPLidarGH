@@ -22,26 +22,26 @@ namespace RPLidar.Components
         public OutlinerSeqComponent()
           : base("Outliner", "Outliner",
                  "Order-aware wall outline from an ordered single-sweep LiDAR scan (split-and-merge, no RANSAC).",
-                 "Appendage", "RPLiDAR")
+                 "Appendage", "RPLIDAR")
         {
         }
 
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddPointParameter("Points", "P", "Scan points in scan (angular) order.", GH_ParamAccess.list);
-            pManager.AddNumberParameter("Threshold", "T", "IEPF split / collinear-merge perpendicular tolerance (mm).", GH_ParamAccess.item, 50.0);
-            pManager.AddNumberParameter("MinLength", "L", "Minimum wall length (mm).", GH_ParamAccess.item, 200.0);
-            pManager.AddNumberParameter("AngleDeg", "A", "Branch angle for corner-intersection vs straight-link (deg).", GH_ParamAccess.item, 30.0);
-            pManager.AddNumberParameter("GapFactor", "G", "Break a run when the gap between consecutive points exceeds this multiple of the expected (range-based) spacing.", GH_ParamAccess.item, 3.0);
+            pManager.AddPointParameter("Points", "Points", "Scan points in scan (angular) order.", GH_ParamAccess.list);
+            pManager.AddNumberParameter("Threshold", "Thresh", "IEPF split / collinear-merge perpendicular tolerance (mm).", GH_ParamAccess.item, 50.0);
+            pManager.AddNumberParameter("MinLength", "MinLen", "Minimum wall length (mm).", GH_ParamAccess.item, 200.0);
+            pManager.AddNumberParameter("AngleDeg", "Angle", "Branch angle for corner-intersection vs straight-link (deg).", GH_ParamAccess.item, 30.0);
+            pManager.AddNumberParameter("GapFactor", "Gap", "Break a run when the gap between consecutive points exceeds this multiple of the expected (range-based) spacing.", GH_ParamAccess.item, 3.0);
         }
 
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddCurveParameter("Outline", "O", "Outer outline polyline.", GH_ParamAccess.item);
-            pManager.AddLineParameter("Walls", "W", "Detected wall lines.", GH_ParamAccess.list);
-            pManager.AddPointParameter("Corners", "C", "Polyline vertices (debug).", GH_ParamAccess.list);
-            pManager.AddPointParameter("WallPoints", "WP", "Points that formed each wall (branch = wall index).", GH_ParamAccess.tree);
-            pManager.AddTextParameter("Info", "I", "Status string.", GH_ParamAccess.item);
+            pManager.AddCurveParameter("Outline", "Outline", "Outer outline polyline.", GH_ParamAccess.item);
+            pManager.AddLineParameter("Walls", "Walls", "Detected wall lines.", GH_ParamAccess.list);
+            pManager.AddPointParameter("Corners", "Corners", "Polyline vertices (debug).", GH_ParamAccess.list);
+            pManager.AddPointParameter("WallPoints", "WallPts", "Points that formed each wall (branch = wall index).", GH_ParamAccess.tree);
+            pManager.AddTextParameter("Info", "Info", "Status string.", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)

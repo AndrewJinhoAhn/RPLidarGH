@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace RPLidar
 {
@@ -30,7 +30,7 @@ namespace RPLidar
     {
         public readonly LidarPoint[] Points;
         public readonly DateTime TimestampUtc;
-        public readonly double ScanHz;   // 측정된 실제 회전 주파수 (0 = 아직 모름)
+        public readonly double ScanHz;   // measured actual rotation frequency (0 = not known yet)
 
         public LidarFrame(LidarPoint[] points, double scanHz = 0)
         {

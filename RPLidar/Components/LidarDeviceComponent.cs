@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Threading;
@@ -39,7 +39,7 @@ namespace RPLidar.Components
         public LidarDeviceComponent()
           : base("RPLIDAR Device", "RPLIDAR",
                  "Connects to an RPLIDAR C1 and streams 360-degree scans.",
-                 "Appendage", "RPLiDAR")
+                 "Appendage", "RPLIDAR")
         {
         }
 
@@ -137,13 +137,13 @@ namespace RPLidar.Components
                 WriteTimeout = 1000,
             };
             _port.Open();
-            _port.DtrEnable = false;          // 모터 on (C1선 무의미할 수 있지만 무해)
+            _port.DtrEnable = false;          // motor on (may be meaningless on the C1 line but harmless)
 
-            SendCommand(0x25);                // STOP → 깨끗한 idle
+            SendCommand(0x25);                // STOP -> clean idle
             Thread.Sleep(20);
             _port.DiscardInBuffer();
 
-            if (_rpm > 0)                     // ★ STOP 뒤, SCAN 앞에서 속도 설정 (SDK 순서)
+            if (_rpm > 0)                     // set speed after STOP and before SCAN (SDK order)
             {
                 SetMotorRpm(_rpm);
                 _prevRpm = _rpm;
@@ -171,15 +171,15 @@ namespace RPLidar.Components
             _portName = null;
             lock (_scanLock) { _latestScan = null; }
         }
-        // HQ 모터 속도 제어 (cmd 0xA8). 600rpm = 10Hz(기본).
-        // 유효 범위는 유닛마다 다른데 대략 480~1200rpm(8~20Hz) 정도. RoboStudio나 getMotorInfo로 확인 가능.
+        // HQ motor speed control (cmd 0xA8). 600rpm = 10Hz (default).
+        // Valid range varies by unit, roughly 480-1200rpm (8-20Hz). Check via RoboStudio or getMotorInfo.
         private void SetMotorRpm(int rpm)
         {
             byte lo = (byte)(rpm & 0xFF);
             byte hi = (byte)((rpm >> 8) & 0xFF);
             byte[] pkt = { 0xA5, 0xA8, 0x02, lo, hi, 0x00 };
             byte cs = 0;
-            for (int i = 0; i < 5; i++) cs ^= pkt[i];   // 체크섬 = 앞 5바이트 XOR
+            for (int i = 0; i < 5; i++) cs ^= pkt[i];   // checksum = XOR of the first 5 bytes
             pkt[5] = cs;
             _port.Write(pkt, 0, 6);
         }
@@ -258,7 +258,7 @@ namespace RPLidar.Components
                         if (dt > 0)
                         {
                             double inst = 1.0 / dt;
-                            _hzEma = _hzEma == 0 ? inst : _hzEma * 0.8 + inst * 0.2;  // 살짝 평활
+                            _hzEma = _hzEma == 0 ? inst : _hzEma * 0.8 + inst * 0.2;  // slight smoothing
                             hz = _hzEma;
                         }
                     }

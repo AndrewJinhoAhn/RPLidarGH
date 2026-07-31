@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
 
-namespace RPLidar      // ★ RPLidar.Utils 아니라 RPLidar — 부모라 어디서든 보임
+namespace RPLidar      // RPLidar (not RPLidar.Utils) - parent namespace so it is visible everywhere
 {
     internal static class IconLoader
     {
-        // 폴더 위치 상관없이 파일명으로 임베디드 PNG 로드 (예: "outliner.png")
+        // Load an embedded PNG by file name regardless of folder location (e.g. "outliner.png")
         public static Bitmap Load(string fileName)
         {
             var asm = Assembly.GetExecutingAssembly();
